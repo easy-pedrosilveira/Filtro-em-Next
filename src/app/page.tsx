@@ -1,10 +1,12 @@
 import { Inter } from 'next/font/google'
 import styles from './page.module.css'
+import { UserObject, Users } from './data/index'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-
+  const [search, setSearch] = useState("")
 
   return (
     <main className={styles.main}>
@@ -25,17 +27,19 @@ export default function Home() {
           type="date"
           placeholder='Data Final'
         />
-
         <div>
           <ul>
-            <li>
-              <p>Green Bay Packers</p>
-              <p>Green Bay</p>
+            {Users.map((dados) =>(
+            <li key={dados.email}>
+              <p>{dados.id}</p>
+              <p>{dados.first_name}</p>
+              <p>{dados.last_name}</p>
+              <p>{dados.email}</p>
+              <p>{dados.gender}</p>
             </li>
+            ))}
           </ul>
         </div>
-
-
       </form>
     </main>
   )
